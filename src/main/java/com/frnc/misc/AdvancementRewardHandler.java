@@ -113,7 +113,6 @@ public class AdvancementRewardHandler
             return;
         }
 
-        // 复刻 c6c RewardManager.applyEffectReward:
         //   new MobEffectInstance(effect, duration=-1, amplifier, ambient=false, visible=false, showIcon=true)
         final MobEffectInstance instance = new MobEffectInstance(
                 effect.get(),
