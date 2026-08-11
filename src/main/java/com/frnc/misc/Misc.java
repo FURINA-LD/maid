@@ -2,6 +2,7 @@ package com.frnc.misc;
 
 import com.frnc.misc.mechanics.doublejump.JumpHandler;
 import com.frnc.misc.mechanics.doublejump.network.DoubleJumpNetwork;
+import com.frnc.misc.mechanics.kaleidoscope_cookery.KaleidoscopeConfigHandler;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
@@ -53,6 +54,9 @@ public class Misc
 
         // Initialize the double jump default state from config
         JumpHandler.initFromConfig();
+
+        // Override the Satiated Shield default config (runs after all mod configs are loaded)
+        KaleidoscopeConfigHandler.applyOverrides();
     }
 
     // Add the frnc block item to the building blocks tab

@@ -44,3 +44,10 @@ mandatory=true
 versionRange="[1.3,)"
 ordering="NONE"
 side="BOTH"
+
+[[dependencies.misc]]
+modId="kaleidoscope_cookery"
+mandatory=true
+versionRange="[1.4.0,)"
+ordering="NONE"
+side="BOTH"

@@ -25,6 +25,8 @@ import java.util.Optional;
 //   - 时长硬编码为 -1(Minecraft 的无限时长标记, 与任何数据文件无关)
 //   - amplifier = 1 => Nourishment II
 //   - HUD 显示图标(showIcon = true)
+// 注: Nourishment 的行为已被 mechanics/farmersdelight/NourishmentHandler 修改,
+//     在原效果基础上新增"阻止饥饿值下降"。
 @Mod.EventBusSubscriber(modid = Misc.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class AdvancementRewardHandler
 {
@@ -104,7 +106,7 @@ public class AdvancementRewardHandler
         return progress.isDone();
     }
 
-    /** 应用永久 Nourishment 效果 */
+    /** 应用永久 Nourishment 效果 (其行为已被 NourishmentHandler 修改为阻止饥饿下降) */
     private static void applyPermanentNourishment(final ServerPlayer player)
     {
         final Optional<MobEffect> effect = BuiltInRegistries.MOB_EFFECT.getOptional(REWARD_EFFECT);
@@ -115,15 +117,7 @@ public class AdvancementRewardHandler
         }
 
         //   new MobEffectInstance(effect, duration=-1, amplifier, ambient=false, visible=false, showIcon=true)
-        final MobEffectInstance instance = new MobEffectInstance(
-                effect.get(),
-                INFINITE_DURATION,
-                AMPLIFIER,
-                false, // ambient
-                false, // visible (粒子)
-                true   // showIcon (HUD 显示图标)
-        );
-        player.addEffect(instance);
+        player.addEffect(new MobEffectInstance(effect.get(), INFINITE_DURATION, AMPLIFIER, false, false, true));
         LOGGER.info("[misc] 已给予玩家 {} 永久 {} (Nourishment {})", player.getName().getString(), REWARD_EFFECT, AMPLIFIER + 1);
     }
 }
