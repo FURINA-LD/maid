@@ -1,5 +1,6 @@
-package com.frnc.misc;
+package com.frnc.misc.reward;
 
+import com.frnc.misc.Misc;
 import com.mojang.logging.LogUtils;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
