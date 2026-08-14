@@ -2,6 +2,7 @@ package com.frnc.misc;
 
 import com.frnc.misc.mechanics.doublejump.JumpHandler;
 import com.frnc.misc.mechanics.doublejump.network.DoubleJumpNetwork;
+import com.frnc.misc.mechanics.droppeditemcleanup.CleanupLists;
 import com.frnc.misc.mechanics.kaleidoscope_cookery.KaleidoscopeConfigHandler;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
@@ -57,6 +58,9 @@ public class Misc
 
         // Override the Satiated Shield default config (runs after all mod configs are loaded)
         KaleidoscopeConfigHandler.applyOverrides();
+
+        // Create/load the cleanup blacklist/whitelist files in the game directory
+        CleanupLists.load();
     }
 
     // Add the frnc block item to the building blocks tab
