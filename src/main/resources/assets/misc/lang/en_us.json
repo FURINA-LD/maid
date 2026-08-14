@@ -1,4 +1,5 @@
 {
     "key.categories.misc": "Misc",
-    "key.misc.double_jump_toggle": "Toggle Double Jump"
+    "key.misc.double_jump_toggle": "Toggle Double Jump",
+    "message.misc.cleanup_warning": "Dropped items will be cleaned up in %s second(s)."
 }

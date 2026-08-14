@@ -38,6 +38,10 @@ public class Config
             .comment("Whether to broadcast a chat message after each cleanup")
             .define("cleanupBroadcastResult", true);
 
+    private static final ForgeConfigSpec.IntValue CLEANUP_WARNING_SECONDS = BUILDER
+            .comment("Broadcast a warning this many seconds before each cleanup (0 = disabled)")
+            .defineInRange("cleanupWarningSeconds", 10, 0, Integer.MAX_VALUE);
+
     private static final ForgeConfigSpec.BooleanValue CLEANUP_ITEM_BLACKLIST_ENABLE = BUILDER
             .comment("Whether the item blacklist applies (blacklist = must clean; see misc-blacklist.json)")
             .define("cleanupItemBlacklistEnable", false);
@@ -71,6 +75,7 @@ public class Config
     public static int cleanupMinimumItemAgeSeconds;
     public static int cleanupMaxItemsPerBatch;
     public static boolean cleanupBroadcastResult;
+    public static int cleanupWarningSeconds;
     public static boolean cleanupItemBlacklistEnable;
     public static boolean cleanupItemWhitelistEnable;
     public static boolean cleanupDimensionBlacklistEnable;
@@ -88,6 +93,7 @@ public class Config
         cleanupMinimumItemAgeSeconds = CLEANUP_MIN_ITEM_AGE_SECONDS.get();
         cleanupMaxItemsPerBatch = CLEANUP_MAX_ITEMS_PER_BATCH.get();
         cleanupBroadcastResult = CLEANUP_BROADCAST_RESULT.get();
+        cleanupWarningSeconds = CLEANUP_WARNING_SECONDS.get();
         cleanupItemBlacklistEnable = CLEANUP_ITEM_BLACKLIST_ENABLE.get();
         cleanupItemWhitelistEnable = CLEANUP_ITEM_WHITELIST_ENABLE.get();
         cleanupDimensionBlacklistEnable = CLEANUP_DIMENSION_BLACKLIST_ENABLE.get();

@@ -22,6 +22,7 @@ import java.util.Deque;
  *   - 分批处理 (cleanupMaxItemsPerBatch 每 tick), 避免主线程卡顿
  *   - 维度/物品黑白名单 (CleanupLists, misc-blacklist.json / misc-whitelist.json)
  *   - 保护规则: 命名物品 / 新鲜掉落 / 死亡掉落 (DeathDropProtection)
+ *   - 清理前 cleanupWarningSeconds 秒广播一次预警 (消息走语言文件 message.misc.cleanup_warning)
  *   - 清理完成广播结果
  * 仅服务端执行 (ServerTickEvent 只在与 MinecraftServer 关联的物理服务端触发)。
  */
@@ -62,6 +63,17 @@ public class CleanupHandler
         {
             elapsedTicks++;
             int intervalTicks = Math.max(1, Config.cleanupIntervalSeconds) * TICKS_PER_SECOND;
+
+            // 清理前预警: 剩余时间恰等于 cleanupWarningSeconds 时广播一次
+            int warningSeconds = Config.cleanupWarningSeconds;
+            if (warningSeconds > 0
+                    && warningSeconds < Config.cleanupIntervalSeconds
+                    && elapsedTicks == intervalTicks - warningSeconds * TICKS_PER_SECOND)
+            {
+                server.getPlayerList().broadcastSystemMessage(
+                        Component.translatable("message.misc.cleanup_warning", warningSeconds), false);
+            }
+
             if (elapsedTicks >= intervalTicks)
             {
                 elapsedTicks = 0;

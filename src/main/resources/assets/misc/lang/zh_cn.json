@@ -1,4 +1,5 @@
 {
     "key.categories.misc": "杂项",
-    "key.misc.double_jump_toggle": "二段跳开关"
+    "key.misc.double_jump_toggle": "二段跳开关",
+    "message.misc.cleanup_warning": "将在 %s 秒后清理掉落物"
 }
