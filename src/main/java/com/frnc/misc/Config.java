@@ -66,6 +66,10 @@ public class Config
             .comment("How many seconds player death drops are protected from cleanup")
             .defineInRange("cleanupPlayerDeathDropProtectionSeconds", 30, 0, Integer.MAX_VALUE);
 
+    private static final ForgeConfigSpec.BooleanValue APOTHESIS_L2HOSTILITY_FIX_ENABLED = BUILDER
+            .comment("Master switch for the Apotheosis + L2Hostility integration: makes mobs spawned by Apotheosis spawners (including chorus-fruit No-AI spawners) receive L2Hostility levels and affixes")
+            .define("apotheosisL2HostilityFixEnabled", true);
+
     static final ForgeConfigSpec SPEC = BUILDER.build();
 
     public static boolean doubleJumpEnabled;
@@ -82,6 +86,7 @@ public class Config
     public static boolean cleanupDimensionWhitelistEnable;
     public static boolean cleanupProtectPlayerDeathDrops;
     public static int cleanupPlayerDeathDropProtectionSeconds;
+    public static boolean apotheosisL2HostilityFixEnabled;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
@@ -100,5 +105,6 @@ public class Config
         cleanupDimensionWhitelistEnable = CLEANUP_DIMENSION_WHITELIST_ENABLE.get();
         cleanupProtectPlayerDeathDrops = CLEANUP_PROTECT_PLAYER_DEATH_DROPS.get();
         cleanupPlayerDeathDropProtectionSeconds = CLEANUP_DEATH_DROP_PROTECTION_SECONDS.get();
+        apotheosisL2HostilityFixEnabled = APOTHESIS_L2HOSTILITY_FIX_ENABLED.get();
     }
 }

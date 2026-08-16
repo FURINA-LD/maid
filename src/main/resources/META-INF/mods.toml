@@ -79,3 +79,10 @@ mandatory=true
 versionRange="[6,)"
 ordering="AFTER"
 side="BOTH"
+
+[[dependencies.misc]]
+modId="l2hostility"
+mandatory=true
+versionRange="[2.5.19,)"
+ordering="NONE"
+side="BOTH"

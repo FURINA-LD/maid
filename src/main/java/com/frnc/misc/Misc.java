@@ -2,6 +2,7 @@ package com.frnc.misc;
 
 import com.frnc.misc.mechanics.doublejump.JumpHandler;
 import com.frnc.misc.mechanics.doublejump.network.DoubleJumpNetwork;
+import com.frnc.misc.mechanics.apotheotic_l2hostility.ApotheoticL2HostilityConfigHandler;
 import com.frnc.misc.mechanics.droppeditemcleanup.CleanupLists;
 import com.frnc.misc.mechanics.kaleidoscope_cookery.KaleidoscopeConfigHandler;
 import com.mojang.logging.LogUtils;
@@ -61,6 +62,9 @@ public class Misc
 
         // Create/load the cleanup blacklist/whitelist files in the game directory
         CleanupLists.load();
+
+        // Allow L2Hostility to level No-AI mobs (Apotheosis chorus-fruit spawners)
+        ApotheoticL2HostilityConfigHandler.applyOverrides();
     }
 
     // Add the frnc block item to the building blocks tab
